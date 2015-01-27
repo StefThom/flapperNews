@@ -2,6 +2,20 @@
  * Created by in134bel on 27-1-2015.
  */
 angular.module('flapperNews', ['ui.router'])
+    .config([
+        '$stateProvider',
+        '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+
+            $stateProvider
+                .state('home', {
+                    url: '/home',
+                    templateUrl: '/home.html',
+                    controller: 'MainCtrl'
+                });
+
+            $urlRouterProvider.otherwise('home');
+        }])
     .factory('posts',[function(){
        var o = {
            posts: [
