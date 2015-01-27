@@ -1,17 +1,23 @@
 /**
  * Created by in134bel on 27-1-2015.
  */
-angular.module('flapperNews', [])
+angular.module('flapperNews', ['ui.router'])
+    .factory('posts',[function(){
+       var o = {
+           posts: [
+               {title: 'DUO', link: 'http://duo.nl', upvotes: 5},
+               {title: 'Algemeen Dagblad', link: 'http://ad.nl', upvotes: 2},
+               {title: 'Google', link: 'http://google.nl', upvotes: 15},
+               {title: 'Markplaats', link: 'http://marktplaats.nl', upvotes: 9},
+               {title: 'KNSA', link: 'http://www.knsa.nl', upvotes: 4}
+           ]
+       };
+       return o;
+    }])
     .controller('MainCtrl', [
-        '$scope', function ($scope) {
+        '$scope', 'posts', function ($scope, posts) {
             $scope.test = 'Hello World!';
-            $scope.posts = [
-                {title: 'post 1', link: 'Link 1', upvotes: 5},
-                {title: 'post 2', link: 'Link 2', upvotes: 2},
-                {title: 'post 3', link: 'Link 3', upvotes: 15},
-                {title: 'post 4', link: 'Link 4', upvotes: 9},
-                {title: 'post 5', link: 'Link 5', upvotes: 4}
-            ];
+            $scope.posts = posts.posts;
 
             // Toevoegen van een post
             $scope.addPost = function(){
